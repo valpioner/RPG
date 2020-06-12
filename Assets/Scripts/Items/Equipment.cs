@@ -6,6 +6,8 @@ using UnityEngine;
 public class Equipment : Item
 {
     public EquipmentSlot equipSlot;
+    public SkinnedMeshRenderer mesh;
+    public EquipmentMeshRegion[] coveredMeshRegions;
 
     public int armorModifier;
     public int damageModifier;
@@ -22,7 +24,8 @@ public class Equipment : Item
     }
 }
 
-public enum EquipmentSlot
-{
-    Head, Chest, Legs, Weapon, Shield, Feet
-}
+public enum EquipmentSlot { Head, Chest, Legs, Weapon, Shield, Feet }
+
+// we need it to dynamically set BlendShapes based on what armor equipped.
+// it makes target mesh skinnier so it won't intersect with armor.
+public enum EquipmentMeshRegion { Legs, Arms, Torso } // corresponds to body blendshapes
