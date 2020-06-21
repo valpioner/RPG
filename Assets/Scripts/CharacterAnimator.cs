@@ -20,7 +20,7 @@ public class CharacterAnimator : MonoBehaviour
     {
         float speedPercent = agent.velocity.magnitude /*speed*/ / agent.speed /*max speed*/;
         animator.SetFloat("speedPercent", speedPercent, locomotionAnimationSmoothTime, Time.deltaTime);
-        Debug.Log("animator: " + animator);
-        Debug.Log("speedPercent: " + speedPercent);
+        //Debug.Log("animator: " + animator);
+        //Debug.Log("speedPercent: " + speedPercent);
     }
 }

@@ -13,10 +13,10 @@ public class Interactable : MonoBehaviour
     public virtual void Interact()
     {
         // This method is meant to be overwritten;
-        Debug.Log("Interacting with " + transform.name);
+        // Debug.Log("Interacting with " + transform.name);
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (isFocus && !hasInteracted)
         {
@@ -35,7 +35,7 @@ public class Interactable : MonoBehaviour
         player = playerTransform;
         hasInteracted = false;
     }
-    public void OnDefocused()
+    public virtual void OnDefocused()
     {
         isFocus = false;
         player = null;
