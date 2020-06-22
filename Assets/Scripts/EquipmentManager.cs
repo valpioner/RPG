@@ -23,6 +23,9 @@ public class EquipmentManager : MonoBehaviour
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
     public OnEquipmentChanged onEquipmentChanged;
 
+    public Transform Shield;
+    public Transform Sword;
+
     Inventory inventory;
 
     private void Start()
@@ -46,19 +49,30 @@ public class EquipmentManager : MonoBehaviour
         // An item has been equipped so we trigger the callback
         if (onEquipmentChanged != null)
         {
-            onEquipmentChanged.Invoke(newItem, oldItem);
+            onEquipmentChanged.Invoke(newItem, null);
         }
 
-        SetEquipmentBlendShapes(newItem, 100);
+        SetEquipmentBlendShapes(newItem, 200);
 
         // Insert the item into the slot
         currentEquipment[slotIndex] = newItem;
         SkinnedMeshRenderer newMesh = Instantiate<SkinnedMeshRenderer>(newItem.mesh);
-        newMesh.transform.parent = targetMesh.transform;
-
-        newMesh.bones = targetMesh.bones;
-        newMesh.rootBone = targetMesh.rootBone;
         currentMeshes[slotIndex] = newMesh;
+
+        if (newItem != null && newItem.equipSlot == EquipmentSlot.Weapon)
+        {
+            newMesh.rootBone = Sword;
+        }
+        else if (newItem != null && newItem.equipSlot == EquipmentSlot.Shield)
+        {
+            newMesh.rootBone = Shield;
+        }
+        else
+        {
+            newMesh.transform.parent = targetMesh.transform;
+            newMesh.bones = targetMesh.bones;
+            newMesh.rootBone = targetMesh.rootBone;
+        }
     }
 
     public Equipment Unequip(int slotIndex)
@@ -102,6 +116,8 @@ public class EquipmentManager : MonoBehaviour
     {
         foreach (EquipmentMeshRegion blendShape in item.coveredMeshRegions)
         {
+            Debug.Log(blendShape);
+            Debug.Log(weight);
             targetMesh.SetBlendShapeWeight((int)blendShape, weight);
         }
     }

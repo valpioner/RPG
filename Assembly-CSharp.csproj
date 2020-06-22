@@ -124,6 +124,7 @@
     <Compile Include="Assets\Scripts\Items\Equipment.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />
     <Compile Include="Assets\Scripts\Items\ItemPickup.cs" />
+    <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Stats\CharacterStats.cs" />
     <Compile Include="Assets\Scripts\Stats\EnemyStats.cs" />
